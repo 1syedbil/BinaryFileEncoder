@@ -17,7 +17,9 @@
 #define STDIN_TO_FILE          6
 #define STDIN_TO_SREC_FILE     7
 #define STDIN_TO_STDOUT        8
+#define STDIN_TO_SREC_STDOUT   9
 
-int validateCmdLine(char* argv[]);
+int validateCmdLine(int argc, char* argv[]);
+int checkSwitch(char* str);
 
 #endif
