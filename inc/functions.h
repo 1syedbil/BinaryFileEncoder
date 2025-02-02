@@ -19,7 +19,20 @@
 #define STDIN_TO_STDOUT        8
 #define STDIN_TO_SREC_STDOUT   9
 
+#define INPUT_NAME             0
+#define OUTPUT_NAME            1
+#define OUTPUT_ASM_NAME        2
+#define OUTPUT_SREC_NAME       3
+
+#define MAX_STRING             255
+
 int validateCmdLine(int argc, char* argv[]);
 int checkSwitch(char* str);
+char* getFileName(char* argv[], int choice);
+char* retrieveArg(char* argv[], int choice);
+
+void encodeToAsm(char* input, char* output);
+
+void encodeToSrec(char* input, char* output); 
 
 #endif

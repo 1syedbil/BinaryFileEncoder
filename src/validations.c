@@ -102,6 +102,7 @@ int validateCmdLine(int argc, char* argv[])
 	return ERROR_EXIT;
 }
 
+
 int checkSwitch(char* str)
 {
 	char input[3] = "-i";
@@ -112,6 +113,7 @@ int checkSwitch(char* str)
 	{
 		curSwitch[i] = str[i];
 	}
+	curSwitch[strlen(input)] = '\0';
 
 	if (strcmp(curSwitch, input) == 0)
 	{
@@ -124,4 +126,89 @@ int checkSwitch(char* str)
 	}
 
 	return 0;
+}
+
+
+char* getFileName(char* argv[], int choice)
+{
+	char fileName[MAX_STRING] = "";
+	char* fileNamePtr = malloc(MAX_STRING);
+	char* arg = malloc(MAX_STRING);
+
+	int index = 2;
+	int counter = 0;
+
+	switch (choice)
+	{
+		case INPUT_NAME:
+		arg = retrieveArg(argv, INPUT_NAME);
+		for (; index < strlen(arg); index++)
+		{
+			fileName[counter] = arg[index];
+			counter++;
+		}
+		strcpy(fileNamePtr, fileName);
+		break;
+
+		case OUTPUT_NAME:
+		arg = retrieveArg(argv, OUTPUT_NAME);
+                for (; index < strlen(arg); index++)
+                {
+                        fileName[counter] = arg[index];
+                        counter++;
+                }
+                strcpy(fileNamePtr, fileName);
+                break;
+
+		case OUTPUT_ASM_NAME:
+		arg = retrieveArg(argv, INPUT_NAME);
+                for (; index < strlen(arg); index++)
+                {
+                        fileName[counter] = arg[index];
+                        counter++;
+                }
+                strcat(fileName, ".asm");
+		strcpy(fileNamePtr, fileName);
+                break;
+
+		case OUTPUT_SREC_NAME:
+		arg = retrieveArg(argv, INPUT_NAME);
+                for (; index < strlen(arg); index++)
+                {
+                        fileName[counter] = arg[index];
+                        counter++;
+                }
+                strcat(fileName, ".srec");
+                strcpy(fileNamePtr, fileName);
+                break;
+	}
+
+	return fileNamePtr;
+}
+
+
+char* retrieveArg(char* argv[], int choice)
+{
+	if (choice == INPUT_NAME)
+	{
+		for (int i = 0; argv[i] != NULL; i++)
+		{
+			if (checkSwitch(argv[i]) == 1)
+			{
+				return argv[i];
+			}
+		}
+	}
+	else if (choice == OUTPUT_NAME)
+	{
+		for (int j = 0; argv[j] != NULL; j++)
+		{
+			if (checkSwitch(argv[j]) == 2)
+			{
+				return argv[j];
+			}
+		}
+	}
+
+	return NULL;
 }

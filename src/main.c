@@ -3,6 +3,8 @@
 int main(int argc, char* argv[])
 {
 	int action = validateCmdLine(argc, argv);
+	char* input = NULL;
+	char* output = NULL;
 
 	switch(action)
 	{
@@ -14,19 +16,35 @@ int main(int argc, char* argv[])
 		break;
 
 		case FILE_TO_FILE:
-		printf("Encode specified input file to specified asm output file.\n");
+		input = getFileName(argv, INPUT_NAME);
+                output = getFileName(argv, OUTPUT_NAME);
+
+                printf("Input: %s\nOutput: %s\n", input, output);
+		//encodeToAsm(input, output);
 		break;
 
 		case FILE_TO_SREC_FILE:
-		printf("Encode specified input file to specified srec output file.\n");
+		input = getFileName(argv, INPUT_NAME);
+		output = getFileName(argv, OUTPUT_NAME);
+
+		printf("Input: %s\nOutput: %s\n", input, output);
+		//encodeToSrec(input, output);
 		break;
 
 		case FILE_TO_DEF_FILE:
-		printf("Encode specified input file to default asm output file.\n");
+		input = getFileName(argv, INPUT_NAME);
+                output = getFileName(argv, OUTPUT_ASM_NAME);
+
+                printf("Input: %s\nOutput: %s\n", input, output);
+		//encodeToAsm(input, output);
 		break;
 
 		case FILE_TO_DEF_SREC_FILE:
-		printf("Encode specified input file to default srec output file.\n");
+		input = getFileName(argv, INPUT_NAME);
+		output = getFileName(argv, OUTPUT_SREC_NAME);
+
+		printf("Input: %s\nOutput: %s\n", input, output);
+		//encodeToSrec(input, output);
 		break;
 
 		case STDIN_TO_FILE:
@@ -48,6 +66,9 @@ int main(int argc, char* argv[])
 		default:
 		break;
 	}
+
+	free(input);
+	free(output);
 
 	return 0;
 }
