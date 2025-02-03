@@ -133,7 +133,17 @@ char* getFileName(char* argv[], int choice)
 {
 	char fileName[MAX_STRING] = "";
 	char* fileNamePtr = malloc(MAX_STRING);
+	if (fileNamePtr == NULL)
+	{
+		perror("malloc failed.\n");
+		return NULL;
+	}
 	char* arg = malloc(MAX_STRING);
+	if (arg == NULL)
+        {
+                perror("malloc failed.\n");
+                return NULL;
+        }
 
 	int index = 2;
 	int counter = 0;

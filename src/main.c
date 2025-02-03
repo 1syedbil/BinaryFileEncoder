@@ -27,8 +27,7 @@ int main(int argc, char* argv[])
 		input = getFileName(argv, INPUT_NAME);
 		output = getFileName(argv, OUTPUT_NAME);
 
-		printf("Input: %s\nOutput: %s\n", input, output);
-		//encodeToSrec(input, output);
+		encodeToSrec(input, output);
 		break;
 
 		case FILE_TO_DEF_FILE:
@@ -43,8 +42,7 @@ int main(int argc, char* argv[])
 		input = getFileName(argv, INPUT_NAME);
 		output = getFileName(argv, OUTPUT_SREC_NAME);
 
-		printf("Input: %s\nOutput: %s\n", input, output);
-		//encodeToSrec(input, output);
+		encodeToSrec(input, output);
 		break;
 
 		case STDIN_TO_FILE:

@@ -26,6 +26,10 @@
 
 #define MAX_STRING             255
 
+#define MAX_SREC               43
+#define S1_DATA_SIZE           16
+#define S0_COUNT               8
+
 int validateCmdLine(int argc, char* argv[]);
 int checkSwitch(char* str);
 char* getFileName(char* argv[], int choice);
@@ -33,6 +37,8 @@ char* retrieveArg(char* argv[], int choice);
 
 void encodeToAsm(char* input, char* output);
 
-void encodeToSrec(char* input, char* output); 
+void encodeToSrec(char* input, char* output);
+char* createS0(char s0[MAX_SREC]);
+int getCheckSum(int sum); 
 
 #endif
